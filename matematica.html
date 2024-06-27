@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="https://www.observnews.ro/wp-content/uploads/2024/06/BAC-1.jpg">
+    <title>Învață cu Luci - Matematică</title>
+</head>
+<body class="matematica">
+    
+    <header>
+        <nav>
+            <ul>
+                <li class="head-acasa"><a class="head-item" href="index.html">Acasă</a></li>
+                <li class="head-opere"><a class="head-item" href="opere.html">Opere BAC Structurate</a></li>
+                <li class="head-subiect2"><a class="head-item" href="subiectul2.html">Subiectul 2</a></li>
+                <li class="head-curente"><a class="head-item" href="curente.html">Curente Literare</a></li>
+                <li class="head-romana"><a class="head-item" href="romana.html">Limba Română</a></li>
+                <li class="head-biologie"><a class="head-item" href="biologie.html">Biologie</a></li>
+                <li class="head-matematica"><a class="head-item active" href="matematica.html">Matematică</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <aside>
+            <ul>
+                <li><a href="#lectie1" onclick="showContent('lectie1')">Lecția 1</a></li>
+                <li><a href="#lectie2" onclick="showContent('lectie2')">Lecția 2</a></li>
+                <li><a href="#lectie3" onclick="showContent('lectie3')">Lecția 3</a></li>
+                <li><a href="#lectie4" onclick="showContent('lectie4')">Lecția 4</a></li>
+                <li><a href="#lectie5" onclick="showContent('lectie5')">Lecția 5</a></li>
+            </ul>
+        </aside>
+
+        <main>
+            <section id="lectie1" class="lectie-content">
+                <h2>Lecția 1</h2>
+                <p>Conținutul pentru Lecția 1.</p>
+            </section>
+            <section id="lectie2" class="lectie-content" style="display: none;">
+                <h2>Lecția 2</h2>
+                <p>Conținutul pentru Lecția 2.</p>
+            </section>
+            <section id="lectie3" class="lectie-content" style="display: none;">
+                <h2>Lecția 3</h2>
+                <p>Conținutul pentru Lecția 3.</p>
+            </section>
+            <section id="lectie4" class="lectie-content" style="display: none;">
+                <h2>Lecția 4</h2>
+                <p>Conținutul pentru Lecția 4.</p>
+            </section>
+            <section id="lectie5" class="lectie-content" style="display: none;">
+                <h2>Lecția 5</h2>
+                <p>Conținutul pentru Lecția 5.</p>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const storedLectie = localStorage.getItem('activeLectie');
+            if (storedLectie) {
+                showContent(storedLectie);
+            }
+        });
+
+        function showContent(lectieId) {
+            var contents = document.getElementsByClassName('lectie-content');
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].style.display = 'none';
+            }
+            document.getElementById(lectieId).style.display = 'block';
+
+            var links = document.querySelectorAll('aside ul li a');
+            links.forEach(link => link.classList.remove('active'));
+            
+            var activeLink = document.querySelector(`aside ul li a[href="#${lectieId}"]`);
+            activeLink.classList.add('active');
+
+            localStorage.setItem('activeLectie', lectieId);
+        }
+    </script>
+
+</body>
+</html>
